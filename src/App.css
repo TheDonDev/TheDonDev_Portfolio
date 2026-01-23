@@ -1,0 +1,351 @@
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: #333;
+}
+
+/* --- Header & Navigation --- */
+#header {
+  background: #333;
+  color: #fff;
+  padding: 1em 0;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  top: 0;
+}
+
+#header .inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2em;
+}
+
+#header .logo {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+#nav {
+  display: flex;
+  align-items: center;
+}
+
+#nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 1em;
+}
+
+#nav a.active {
+  text-decoration: underline;
+  color: #f0a500;
+}
+
+.hamburger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.hamburger div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+}
+
+@media (max-width: 768px) {
+  #nav {
+      display: none;
+      flex-direction: column;
+      background: #333;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 100%;
+  }
+  #nav a {
+      margin: 1em 0;
+      text-align: center;
+      padding: 1em;
+      border-top: 1px solid #444;
+      width: 100%;
+  }
+  .hamburger {
+      display: flex;
+  }
+  #nav.active {
+      display: flex;
+  }
+}
+
+/* --- Footer --- */
+footer {
+  background: #333;
+  color: #fff;
+  padding: 2em 0;
+  text-align: center;
+}
+
+/* --- Navigation Arrows --- */
+.navigation-arrows {
+  position: fixed;
+  top: 75%;
+  right: 20px;
+  transform: translateY(-50%);
+  z-index: 1000;
+}
+
+.arrow {
+  font-size: 3em;
+  color: #fff;
+  text-decoration: none;
+  margin: 0 20px;
+  transition: color 0.3s;
+  text-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+.arrow:hover {
+  color: #f0a500;
+}
+
+/* --- Page Sections --- */
+.main {
+  padding: 5em 2em;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.main .major {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+/* Home Banner */
+#banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: #fff;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  animation: slide-home 15s infinite;
+}
+
+#banner h1 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+}
+
+#banner p {
+  font-size: 1.25em;
+  height: 2em;
+  overflow: hidden;
+}
+
+/* Intro */
+#intro {
+  height: 100vh;
+  color: #fff;
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  animation: slide-intro 10s infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* About */
+#about {
+  background-size: cover;
+  background-position: center;
+  animation: slide-about 35s infinite;
+  color: #fff;
+}
+
+.qualities {
+  text-align: center;
+  margin-top: 2em;
+  color: #fff;
+  font-weight: bold;
+}
+
+.qualities span {
+  display: inline-block;
+  margin: 0 1em;
+  position: relative;
+}
+
+.qualities span::before {
+  content: "•";
+  position: absolute;
+  left: -1.5em;
+}
+
+/* Strategic Framework */
+#strategic-framework {
+  background-color: #000;
+  color: #fff;
+  background-size: cover;
+  background-position: center;
+  animation: slide-mv 35s infinite;
+  text-align: center;
+}
+
+.vision-mission {
+  margin-top: 3em;
+}
+
+.vision-mission ul {
+  list-style: none;
+  padding: 0;
+}
+
+/* Experience */
+#experience {
+  background-size: cover;
+  background-position: center;
+  animation: slide-experience 35s infinite;
+  color: #fff;
+}
+
+/* Projects */
+#projects {
+  background: #fff;
+  color: #000;
+}
+
+.projects-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2em;
+}
+
+.project-section {
+  flex: 1;
+  padding: 2em;
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+  position: relative;
+  color: #fff;
+}
+
+.project-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.project-content {
+  position: relative;
+  z-index: 2;
+}
+
+.vertical-line {
+  width: 2px;
+  background: #000;
+  height: auto;
+}
+
+/* Contact */
+#contact {
+  background: #fff;
+  color: #000;
+}
+
+.contact-info {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.contact-info li i {
+  margin-right: 0.5em;
+}
+
+iframe {
+  width: 100%;
+  height: 450px;
+  border: 0;
+}
+
+/* --- Animations --- */
+@keyframes slide-home {
+  0% { background-image: url('./assets/ServeRoom.jpg'); }
+  33% { background-image: url('./assets/WorkStationLine2.jpg'); }
+  66% { background-image: url('./assets/ServeRoom.jpg'); }
+  100% { background-image: url('./assets/WorkStationLine.jpg'); }
+}
+
+@keyframes slide-intro {
+  0% { background-image: url('./assets/nai.jpg'); }
+  50% { background-image: url('./assets/nai3.jpg'); }
+  100% { background-image: url('./assets/PRO3.jpg'); }
+}
+
+@keyframes slide-about {
+  0% { background-image: url('./assets/Skills.jpg'); }
+  14.28% { background-image: url('./assets/Skills2.jpg'); }
+  28.56% { background-image: url('./assets/Skills6.jpg'); }
+  42.84% { background-image: url('./assets/Skills4.jpg'); }
+  57.12% { background-image: url('./assets/Skills5.jpg'); }
+  71.40% { background-image: url('./assets/BB2.jpg'); }
+  85.68% { background-image: url('./assets/Skills4.jpg'); }
+  100% { background-image: url('./assets/Skills.jpg'); }
+}
+
+@keyframes slide-mv {
+  0% { background-image: url('./assets/MV.jpg'); }
+  33.3333% { background-image: url('./assets/MV3.jpg'); }
+  66.6666% { background-image: url('./assets/MV5.jpg'); }
+  99.9999% { background-image: url('./assets/MV.jpg'); }
+}
+
+@keyframes slide-experience {
+  0% { background-image: url('./assets/Konza.jpg'); }
+  33.33% { background-image: url('./assets/WorkStationDay.jpg'); }
+  66.66% { background-image: url('./assets/WorkStationNight.jpg'); }
+  100% { background-image: url('./assets/Konza.jpg'); }
+}
+
+@keyframes slide-farm-door {
+  0%, 50% { background-image: url('./assets/VisiTrack (1).jpg'); }
+  100% { background-image: url('./assets/VisiTrack (2).jpg'); }
+}
+
+@keyframes slide-op-hub {
+  0%, 50% { background-image: url('./assets/LeonardoOphubjpg (1).jpg'); }
+  100% { background-image: url('./assets/LeonardoOphubjpg (2).jpg'); }
+}
+
+.farm-door { animation: slide-farm-door 10s infinite; }
+.op-hub { animation: slide-op-hub 10s infinite; }
+
+@media (max-width: 768px) {
+  .projects-container {
+      flex-direction: column;
+  }
+  .main p {
+      font-size: 1em;
+  }
+}
