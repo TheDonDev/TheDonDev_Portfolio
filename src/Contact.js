@@ -67,7 +67,7 @@ const Contact = () => {
                     <ul className="contact-info">
                         <li><i className="fas fa-envelope"></i><strong>Email:</strong> <a href="mailto:donaldmwanga33@gmail.com">donaldmwanga33@gmail.com</a></li>
                         <li><i className="fab fa-linkedin"></i><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/donald-mwanga-4bb5abba" target="_blank" rel="noopener noreferrer">Donald Mwanga Makori</a></li>
-                        <li><i className="fab fa-github"></i><strong>GitHub:</strong> <a href="https://github.com/thedondev" target="_blank" rel="noopener noreferrer">thedondev</a></li>
+                        <li><i className="fab fa-github"></i><strong>GitHub:</strong> <a href="https://github.com/thedondev" target="_blank" rel="noopener noreferrer">Donald Mwanga Makori</a></li>
                         {/* ... other social links */}
                     </ul>
 

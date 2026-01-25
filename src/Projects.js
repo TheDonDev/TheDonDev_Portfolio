@@ -35,8 +35,12 @@ const Projects = () => {
                                         <h3>{project.title}</h3>
                                         <p>{project.description}</p>
                                         <div className="project-links" style={{ marginTop: '1em' }}>
-                                            <a href={project.demoUrl} className="btn btn-outline-light mt-2" target="_blank" rel="noopener noreferrer">Live Demo</a>
-                                            <a href={project.githubUrl} className="btn btn-outline-light mt-2" style={{ marginLeft: '10px' }} target="_blank" rel="noopener noreferrer">GitHub</a>
+                                            <a href={project.demoUrl} className="btn btn-outline-light mt-2" target="_blank" rel="noopener noreferrer">
+                                                <i className="fas fa-external-link-alt mr-2"></i> Live Demo
+                                            </a>
+                                            <a href={project.githubUrl} className="btn btn-outline-light mt-2" style={{ marginLeft: '10px' }} target="_blank" rel="noopener noreferrer">
+                                                <i className="fab fa-github mr-2"></i> GitHub
+                                            </a>
                                         </div>
                                     </div>
                                 </div>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import NavigationArrows from './NavigationArrows';
 import cv from './assets/Donald_Mwanga_CV.pdf';
 
@@ -50,9 +51,14 @@ const Home = () => {
                 <div className="inner">
                     <h1>Welcome to my Creative Portfolio</h1>
                     <p id="animated-text">{animatedText}</p>
-                    <a href={cv} className="btn btn-outline-light btn-lg mt-3" download>
-                        <i className="fas fa-download mr-2"></i>Download CV
-                    </a>
+                    <div className="cta-buttons" style={{ marginTop: '2em', display: 'flex', justifyContent: 'center', gap: '1em' }}>
+                        <a href={cv} className="btn btn-lg" style={{ backgroundColor: '#28a745', color: '#fff', border: 'none' }} download aria-label="Download CV">
+                            <i className="fas fa-download mr-2"></i>Download CV
+                        </a>
+                        <Link to="/contact" className="btn btn-lg" style={{ backgroundColor: '#007bff', color: '#fff', border: 'none' }} aria-label="Contact Me">
+                            <i className="fas fa-envelope mr-2"></i>Contact Me
+                        </Link>
+                    </div>
                 </div>
             </section>
             <NavigationArrows prev="/contact" next="/intro" />
