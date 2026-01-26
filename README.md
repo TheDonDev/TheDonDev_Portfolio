@@ -1,120 +1,74 @@
-# Donald's Developer Portfolio
-Welcome to my portfolio! 🎉
+# Donald's Developer Portfolio 🚀
 
-This repository showcases some of my key projects, skills, and experiences as a passionate software developer. Feel free to explore the live version at thedondev.github.io.
+Welcome to the source code of my personal portfolio! This repository showcases my journey, skills, and projects as a software engineer.
 
-> **Update:** I have created a new version of my portfolio! You can find the source code in this repository: [https://github.com/TheDonDev/my-portfolio](https://github.com/TheDonDev/my-portfolio).
+**🌐 Live Demo:** [donaldmwangamakori.netlify.app](https://donaldmwangamakori.netlify.app)
 
-# 🚀 About Me
-I'm Donald, an aspiring Frontend Developer with a specialization in Software Development. I enjoy building interactive, user-friendly applications using modern web technologies like HTML, CSS, React.js, and Vue.js.
+## 👨‍💻 About Me
 
-I’m also always learning and improving, with interests spanning across full-stack development and penetration testing.
+I am a dedicated Software Developer with a passion for building interactive, user-friendly applications. My strategic framework is built on innovation, collaboration, and continuous improvement. I strive to leverage technology to create solutions that not only meet today's needs but also anticipate tomorrow's challenges.
 
-# 🔧 Technologies & Tools
-Here are some of the technologies and tools I’ve worked with: 
+I have experience working in cross-functional teams, designing smart city solutions, and leading social entrepreneurship initiatives.
 
-Frontend: HTML5, CSS3, JavaScript, React.js, Vue.js
-Backend: Python (Flask), PHP (Laravel)
-Design: Figma (Wireframing, Prototyping)
-Version Control: Git, GitHub
-Other Tools: Docker, ERPNext, Cloud Platforms
+## 🛠️ Technologies & Tools
 
-# 🌟 Featured Projects
-Here are some of the standout projects I've worked on:
+I possess a diverse skillset across the full software development lifecycle:
 
-**Farm-Door Web & Mobile App**
+*   **Languages:** JavaScript, Python, PHP, C, C++, Dart
+*   **Frontend:** React.js, Vue.js, HTML5, CSS3, Flutter (Mobile)
+*   **Backend:** Node.js (Express.js), Django, Flask, Laravel
+*   **Databases:** MySQL, Microsoft SQL Server
+*   **Tools & DevOps:** Git, GitHub, Docker, Figma, ERPNext
 
-A platform connecting farmers with consumers.
-Built with HTML, CSS, Flask (Python), and mobile-friendly designs.
-Opportunity Hub Platform
+## 🌟 Featured Projects
 
-A job search platform connecting opportunities with job seekers.
-Uses modern frameworks for smooth and intuitive user experience.
+### VisiTrack
+*Web & Mobile Application*
+A comprehensive visitor management system designed to manage visitor check-ins and bookings at various locations. This application provides a seamless experience for both hosts and visitors, ensuring efficient tracking and management of visits.
 
-**CareersPortal**
+### CheckMate
+*Mobile Application*
+A dynamic solution designed to streamline student class attendance management in universities. Built with **Flutter (Dart)** for a responsive cross-platform frontend and **Node.js** for a reliable backend, it replaces traditional paper methods with real-time tracking.
 
-A job hosting site with a responsive UI and robust backend.
+## 💼 Experience
 
-**Graduate Software Development Services**
+**Software Developer - Attache**
+*Konza Technopolis Development Authority (May 2024 - August 2024)*
+*   Designed, developed, and implemented smart city solutions.
+*   Utilized Python (Django, Flask), PHP (Laravel), and Node.js.
+*   Collaborated in cross-functional teams to write clean, maintainable code with unit and integration testing.
 
-A concept to engage universities and collaborate on software solutions.
-Developed with PHP Laravel.
+**Idea Competition Winner & Team Lead**
+*Venture For Change Kenya (2022)*
+*   Led 'Team Spork' to win first place in a social entrepreneurship competition sponsored by Boehringer Ingelheim International.
+*   Focused on innovating solutions to alleviate waste in rapidly growing urban centers.
 
-# 📫 Contact Me
-Got a project idea or want to collaborate? You can reach me via:
+## 📫 Contact Me
 
-Email: donaldmwanga33@gmail.com
-LinkedIn: www.linkedin.com/in/donald-mwanga-4bb5abba
+I am always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
 
+*   **Email:** [donaldmwanga33@gmail.com](mailto:donaldmwanga33@gmail.com)
+*   **LinkedIn:** [Donald Mwanga](https://www.linkedin.com/in/donald-mwanga-4bb5abba)
+*   **GitHub:** [TheDonDev](https://github.com/TheDonDev)
 
+---
 
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Run Locally
 
 In the project directory, you can run:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Runs the app in the development mode. Open http://localhost:3000 to view it in your browser.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the test runner in the interactive watch mode.
 
 ### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance.
