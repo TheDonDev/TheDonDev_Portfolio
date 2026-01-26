@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import NavigationArrows from './NavigationArrows';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState('');
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const iframeRef = useRef(null);
 
     useEffect(() => {
@@ -26,34 +28,45 @@ const Contact = () => {
     }, []);
 
     const handleChange = (e) => {
-        const { id, value } = e.target;
-        setFormData(prevState => ({ ...prevState, [id]: value }));
+        const { name, value } = e.target;
+        setFormData(prevState => ({ ...prevState, [name]: value }));
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setStatus('Sending...');
+        setIsSubmitting(true);
 
-        const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://thedondev-github-io.onrender.com/submit';
+        // Replace these strings with your actual EmailJS credentials if .env is not working
+        const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+        const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID  || 'YOUR_TEMPLATE_ID';
+        const publicKey = process.env.REACT_APP_EMAILJS_USER_ID || 'YOUR_PUBLIC_KEY';
 
-        fetch(backendUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData),
-        })
-        .then(response => {
-            if (!response.ok) throw new Error(`Server Error: ${response.status}`);
-            return response.json();
-        })
-        .then(() => {
-            setStatus('Message sent successfully!');
-            setFormData({ name: '', email: '', message: '' });
-            setTimeout(() => setStatus(''), 5000);
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            setStatus(`Error: ${error.message}. Please try again.`);
-        });
+        if (
+            !serviceID || serviceID.includes('YOUR_SERVICE_ID') ||
+            !templateID || templateID.includes('YOUR_TEMPLATE_ID') ||
+            !publicKey || publicKey.includes('YOUR_PUBLIC_KEY')
+        ) {
+            const errorMessage = 'Email service is not configured. Please check your .env file for placeholder values.';
+            setStatus(errorMessage);
+            setIsSubmitting(false);
+            console.error('EmailJS Error: Credentials in .env file are missing or are still set to placeholder values.');
+            return;
+        }
+
+        // Note: The 4th argument is the Public Key (formerly User ID)
+        emailjs.sendForm(serviceID, templateID, e.target, publicKey)
+            .then((result) => {
+                console.log('EmailJS Success:', result.text);
+                setStatus('Message sent successfully!');
+                setFormData({ name: '', email: '', message: '' });
+                setTimeout(() => setStatus(''), 5000);
+            }, (error) => {
+                console.error('EmailJS Error:', error.text);
+                setStatus(`Error: ${error.text}. Please try again.`);
+            })
+            .finally(() => {
+                setIsSubmitting(false);
+            });
     };
 
     return (
@@ -65,28 +78,52 @@ const Contact = () => {
                     </header>
                     <p>If you have any questions or would like to discuss a potential project, feel free to reach out to me.</p>
                     <ul className="contact-info">
-                        <li><i className="fas fa-envelope"></i><strong>Email:</strong> <a href="mailto:donaldmwanga33@gmail.com">donaldmwanga33@gmail.com</a></li>
-                        <li><i className="fab fa-linkedin"></i><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/donald-mwanga-4bb5abba" target="_blank" rel="noopener noreferrer">Donald Mwanga Makori</a></li>
-                        <li><i className="fab fa-github"></i><strong>GitHub:</strong> <a href="https://github.com/thedondev" target="_blank" rel="noopener noreferrer">Donald Mwanga Makori</a></li>
-                        {/* ... other social links */}
+                        <li>
+                            <a href="mailto:donaldmwanga33@gmail.com">
+                                <i className="fas fa-envelope"></i> donaldmwanga33@gmail.com
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/donald-mwanga-4bb5abba" target="_blank" rel="noopener noreferrer">
+                                <i className="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/thedondev" target="_blank" rel="noopener noreferrer">
+                                <i className="fab fa-github"></i> GitHub
+                            </a>
+                        </li>
                     </ul>
 
                     <div className="contact-form">
+                        <h3>Send a Message</h3>
                         <form id="contactForm" onSubmit={handleSubmit}>
-                            <div className="form-group">
-                                <label htmlFor="name">Name</label>
-                                <input type="text" className="form-control" id="name" placeholder="Enter your name" value={formData.name} onChange={handleChange} required />
-                            </div>
-                            <div className="form-group">
-                                <label htmlFor="email">Email</label>
-                                <input type="email" className="form-control" id="email" placeholder="Enter your email" value={formData.email} onChange={handleChange} required />
+                            <div className="row">
+                                <div className="col-12 col-md-6">
+                                    <div className="form-group">
+                                        <label htmlFor="name">Name</label>
+                                        <input type="text" className="form-control" id="name" name="name" placeholder="Your Name" value={formData.name} onChange={handleChange} required />
+                                    </div>
+                                </div>
+                                <div className="col-12 col-md-6">
+                                    <div className="form-group">
+                                        <label htmlFor="email">Email</label>
+                                        <input type="email" className="form-control" id="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleChange} required />
+                                    </div>
+                                </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="message">Message</label>
-                                <textarea className="form-control" id="message" rows="4" placeholder="Enter your message" value={formData.message} onChange={handleChange} required></textarea>
+                                <textarea className="form-control" id="message" name="message" rows="5" placeholder="Your Message" value={formData.message} onChange={handleChange} required></textarea>
                             </div>
-                            <button type="submit" className="btn btn-primary">Submit</button>
-                            {status && <p style={{ marginTop: '1em' }}>{status}</p>}
+                            <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                                {isSubmitting ? (
+                                    <><span className="spinner"></span>Sending...</>
+                                ) : (
+                                    'Send Message'
+                                )}
+                            </button>
+                            {status && !isSubmitting && <p className={`form-status ${status.startsWith('Error') ? 'error' : ''}`}>{status}</p>}
                         </form>
                     </div>
 

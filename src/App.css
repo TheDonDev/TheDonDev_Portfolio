@@ -276,17 +276,172 @@ footer {
 .contact-info li {
   display: flex;
   align-items: center;
-  margin-bottom: 1em;
+  margin-bottom: 1.5em;
 }
 
-.contact-info li i {
-  margin-right: 0.5em;
+.contact-info li a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  font-size: 1.1em;
+  transition: color 0.3s ease;
 }
+
+.contact-info li a:hover { color: #f0a500; }
+
+.contact-info li i { margin-right: 0.8em; font-size: 1.8em; width: 30px; text-align: center; }
+.contact-info li i.fa-linkedin { color: #0077b5; }
+.contact-info li i.fa-github { color: #333; }
+.contact-info li i.fa-envelope { color: #d44638; }
 
 iframe {
   width: 100%;
   height: 450px;
   border: 0;
+}
+
+/* --- Contact Form Styling --- */
+.contact-form {
+  max-width: 900px;
+  margin: 3em auto;
+  padding: 2.5em;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.contact-form h3 {
+  text-align: center;
+  margin-bottom: 1.5em;
+  font-size: 1.8em;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Custom Grid for Form */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -15px;
+}
+
+.col-12 {
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 768px) {
+  .col-md-6 {
+    width: 50%;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.5em;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  color: #555;
+  font-size: 0.95em;
+}
+
+.form-control {
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #f0a500;
+  box-shadow: 0 0 0 4px rgba(240, 165, 0, 0.15);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 150px;
+}
+
+.contact-form .btn-primary {
+  align-self: center;
+  background-color: #333;
+  color: #fff;
+  padding: 15px 50px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1em;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .contact-form .btn-primary {
+    width: auto;
+  }
+}
+
+.contact-form .btn-primary:hover {
+  background-color: #f0a500;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.contact-form .btn-primary:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.contact-form .btn-primary .spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+  margin-right: 10px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-status {
+  text-align: center;
+  font-weight: bold;
+  color: #28a745;
+  margin-top: 1.5em;
+}
+
+.form-status.error {
+  color: #dc3545; /* A standard bootstrap danger red */
 }
 
 /* --- Animations --- */
