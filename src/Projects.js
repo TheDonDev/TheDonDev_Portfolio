@@ -1,24 +1,113 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import NavigationArrows from './NavigationArrows';
+
+// Import images
+import libricoIcon from './assets/Librico_desktop_application_Icon.jpg';
+import libricoApp3 from './assets/Librico_desktop_appli_3.jpg';
+import visiTrack1 from './assets/VisiTrack_1.jpg';
+import visiTrack2 from './assets/VisiTrack_2.jpg';
+import checkMate1 from './assets/Mobile_App_Icon_Image_for_2.jpg';
+import checkMate2 from './assets/Mobile_App_Icon_Image_for_3.jpg';
 
 const projectsData = [
     {
         title: 'VisiTrack',
         description: 'As a software developer, I developed the VisiTrack web and mobile application, a comprehensive visitor management system designed to manage visitor check-ins and bookings at various locations. This application not only provides a seamless experience for both hosts and visitors but also ensures efficient tracking and management of visits. Users can easily schedule visits, send notifications to hosts, and manage visitor details efficiently, enhancing the overall visitor experience and streamlining the check-in process for various venues.',
-        animationClass: 'farm-door',
+        imageUrls: [visiTrack1, visiTrack2],
         demoUrl: '#', // TODO: Add your live demo link
         githubUrl: 'https://github.com/thedondev/VisiTrack' // TODO: Add your GitHub repo link
     },
     {
         title: 'CheckMate',
         description: 'In my role as a software developer, I also worked on the CheckMate Mobile Application, a dynamic and innovative solution designed to streamline student class attendance management in universities. Built with Flutter (Dart) for a responsive cross-platform frontend and Node.js for a reliable backend, CheckMate provides a user-friendly and efficient digital solution. It empowers both lecturers and students to manage attendance seamlessly, replacing traditional paper methods with real-time tracking and reporting capabilities.',
-        animationClass: 'op-hub',
+        imageUrls: [checkMate1, checkMate2],
         demoUrl: '#', // TODO: Add your live demo link
         githubUrl: 'https://github.com/thedondev/CheckMate' // TODO: Add your GitHub repo link
+    },
+    {
+        title: 'Librico',
+        description: 'A standalone desktop application using Electron and React to replace manual, paper-based systems in high school libraries. Features include secure librarian authentication, book inventory management, and automated due date tracking.',
+        imageUrls: [libricoIcon, libricoApp3], // Updated with new images
+        demoUrl: '#', // TODO: Add your live demo link
+        githubUrl: '#' // TODO: Add your GitHub repo link
     }
 ];
 
+const ProjectCard = ({ project }) => {
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+    useEffect(() => {
+        // Only run slideshow if there's more than one image
+        if (project.imageUrls && project.imageUrls.length > 1) {
+            const intervalId = setInterval(() => {
+                setCurrentImageIndex(prevIndex => (prevIndex + 1) % project.imageUrls.length);
+            }, 5000); // Change image every 5 seconds
+
+            return () => clearInterval(intervalId);
+        }
+    }, [project.imageUrls]);
+
+    const currentImageUrl = project.imageUrls[currentImageIndex];
+
+    const backgroundStyle = {
+        backgroundImage: `url(${currentImageUrl})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        transition: 'background-image 1.5s ease-in-out',
+    };
+
+    return (
+        <div
+            className="project-section"
+            style={currentImageUrl ? backgroundStyle : { backgroundColor: '#333' }}
+        >
+            <div className="project-content">
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+                <div className="project-links" style={{ marginTop: '1em' }}>
+                    <a href={project.demoUrl} className="btn btn-outline-light mt-2" target="_blank" rel="noopener noreferrer">
+                        <i className="fas fa-external-link-alt mr-2"></i> Live Demo
+                    </a>
+                    <a href={project.githubUrl} className="btn btn-outline-light mt-2" style={{ marginLeft: '10px' }} target="_blank" rel="noopener noreferrer">
+                        <i className="fab fa-github mr-2"></i> GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const Projects = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const projectsPerPage = 2; // Show 2 projects per view
+
+    // Create pages of projects
+    const projectPages = [];
+    for (let i = 0; i < projectsData.length; i += projectsPerPage) {
+        projectPages.push(projectsData.slice(i, i + projectsPerPage));
+    }
+    const numSlides = projectPages.length;
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex(prevIndex => (prevIndex + 1) % numSlides);
+        }, 8000); // Move to the next slide every 8 seconds
+
+        return () => clearInterval(interval);
+    }, [currentIndex, numSlides]); // Reset interval on manual navigation or when project count changes
+
+    const handlePrev = () => {
+        setCurrentIndex(prevIndex => (prevIndex - 1 + numSlides) % numSlides);
+    };
+
+    const handleNext = () => {
+        setCurrentIndex(prevIndex => (prevIndex + 1) % numSlides);
+    };
+
+    const goToSlide = (slideIndex) => {
+        setCurrentIndex(slideIndex);
+    };
+
     return (
         <>
             <section id="projects" className="main">
@@ -28,25 +117,32 @@ const Projects = () => {
                     </header>
                     <p>Throughout my career, I have worked on numerous projects that have honed my skills as a software engineer. Here are a few of the notable ones:</p>
                     <div className="projects-container">
-                        {projectsData.map((project, index) => (
-                            <React.Fragment key={project.title}>
-                                <div className={`project-section ${project.animationClass}`}>
-                                    <div className="project-content">
-                                        <h3>{project.title}</h3>
-                                        <p>{project.description}</p>
-                                        <div className="project-links" style={{ marginTop: '1em' }}>
-                                            <a href={project.demoUrl} className="btn btn-outline-light mt-2" target="_blank" rel="noopener noreferrer">
-                                                <i className="fas fa-external-link-alt mr-2"></i> Live Demo
-                                            </a>
-                                            <a href={project.githubUrl} className="btn btn-outline-light mt-2" style={{ marginLeft: '10px' }} target="_blank" rel="noopener noreferrer">
-                                                <i className="fab fa-github mr-2"></i> GitHub
-                                            </a>
-                                        </div>
-                                    </div>
+                        <div className="projects-slider" style={{
+                            width: `${numSlides * 100}%`,
+                            transform: `translateX(-${currentIndex * (100 / numSlides)}%)`
+                        }}>
+                            {projectPages.map((page, pageIndex) => (
+                                <div className="project-slide-page" key={pageIndex}>
+                                    {page.map((project) => (
+                                        <ProjectCard project={project} key={project.title} />
+                                    ))}
                                 </div>
-                                {index < projectsData.length - 1 && <div className="vertical-line"></div>}
-                            </React.Fragment>
-                        ))}
+                            ))}
+                        </div>
+                        <div className="slider-nav">
+                            <button onClick={handlePrev} className="slider-arrow prev-arrow" aria-label="Previous project">‹</button>
+                            <button onClick={handleNext} className="slider-arrow next-arrow" aria-label="Next project">›</button>
+                        </div>
+                        <div className="slider-pagination">
+                            {projectPages.map((_, index) => (
+                                <button
+                                    key={index}
+                                    className={`pagination-dot ${currentIndex === index ? 'active' : ''}`}
+                                    onClick={() => goToSlide(index)}
+                                    aria-label={`Go to slide ${index + 1}`}
+                                />
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>

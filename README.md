@@ -23,8 +23,8 @@ I possess a diverse skillset across the full software development lifecycle:
 ## 🌟 Featured Projects
 
 ### VisiTrack
-*Web & Mobile Application*
-A comprehensive visitor management system designed to manage visitor check-ins and bookings at various locations. This application provides a seamless experience for both hosts and visitors, ensuring efficient tracking and management of visits.
+*Desktop Application*
+A standalone desktop application using Electron and React to replace manual, paper-based systems in high school libraries. Features include secure librarian authentication, book inventory management, and automated due date tracking.
 
 ### CheckMate
 *Mobile Application*

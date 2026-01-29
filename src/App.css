@@ -224,14 +224,32 @@ footer {
   color: #000;
 }
 
+/* This is the viewport for the carousel */
 .projects-container {
+  overflow: hidden;
+  position: relative;
+}
+
+/* This element slides */
+.projects-slider {
   display: flex;
-  justify-content: space-between;
+  transition: transform 1s ease-in-out;
+  /* width and transform are now set via inline styles in React */
+}
+
+.project-slide-page {
+  width: 100%;
+  display: flex;
   gap: 2em;
+  padding: 0 1em;
+  box-sizing: border-box;
 }
 
 .project-section {
+  /* Projects will share space on a page. If one project, it takes full width. */
   flex: 1;
+  box-sizing: border-box;
+  /* margin is replaced by gap on .project-slide-page */
   padding: 2em;
   background-size: cover;
   background-position: center;
@@ -256,10 +274,72 @@ footer {
   z-index: 2;
 }
 
+.slider-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  z-index: 10;
+  pointer-events: none; /* Allows clicks to pass through the container */
+}
+
+.slider-arrow {
+  pointer-events: all; /* Makes the buttons clickable */
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #fff;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-size: 2rem;
+  line-height: 48px; /* Vertically center the arrow */
+  text-align: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px); /* For Safari */
+}
+
+.slider-arrow:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.1);
+}
+
+.prev-arrow { margin-left: 1em; }
+
+.next-arrow { margin-right: 1em; }
+
+.slider-pagination {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.pagination-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination-dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.2);
+}
+.pagination-dot.active { background: #fff; }
+
 .vertical-line {
-  width: 2px;
-  background: #000;
-  height: auto;
+  display: none;
 }
 
 /* Contact */
@@ -483,24 +563,32 @@ textarea.form-control {
   100% { background-image: url('./assets/Konza.jpg'); }
 }
 
-@keyframes slide-farm-door {
-  0%, 50% { background-image: url('./assets/VisiTrack (1).jpg'); }
-  100% { background-image: url('./assets/VisiTrack (2).jpg'); }
-}
-
-@keyframes slide-op-hub {
-  0%, 50% { background-image: url('./assets/LeonardoOphubjpg (1).jpg'); }
-  100% { background-image: url('./assets/LeonardoOphubjpg (2).jpg'); }
-}
-
-.farm-door { animation: slide-farm-door 10s infinite; }
-.op-hub { animation: slide-op-hub 10s infinite; }
-
 @media (max-width: 768px) {
   .projects-container {
-      flex-direction: column;
+    /* On mobile, we'll just stack them vertically instead of a carousel */
+    overflow: visible;
   }
   .main p {
       font-size: 1em;
+  }
+  .projects-slider {
+    flex-direction: column;
+    width: 100% !important;
+    transform: none !important; /* Override inline style from JS */
+    gap: 0;
+  }
+  .project-slide-page {
+    flex-direction: column;
+    padding: 0;
+    gap: 2em; /* This becomes the gap between projects */
+  }
+  .project-section {
+    width: 100%;
+    margin: 0;
+  }
+  .slider-nav,
+  .slider-pagination {
+    /* On mobile, the slider becomes a vertical list, so arrows are not needed. */
+    display: none;
   }
 }
