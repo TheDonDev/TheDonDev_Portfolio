@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavigationArrows from './NavigationArrows';
-import cv from './assets/Donald_Mwanga_CV.pdf';
+import cv from './assets/Donald_Mwanga_Makori_C V.pdf';
 
 const texts = ["Software Engineer", "Full-Stack Developer", "IT Support Specialist", "Social Entrepreneur"];
 

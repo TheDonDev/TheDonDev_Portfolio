@@ -36,20 +36,15 @@ const Contact = () => {
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Replace these strings with your actual EmailJS credentials if .env is not working
-        const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
-        const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID  || 'YOUR_TEMPLATE_ID';
-        const publicKey = process.env.REACT_APP_EMAILJS_USER_ID || 'YOUR_PUBLIC_KEY';
+        const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+        const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+        const publicKey = process.env.REACT_APP_EMAILJS_USER_ID;
 
-        if (
-            !serviceID || serviceID.includes('YOUR_SERVICE_ID') ||
-            !templateID || templateID.includes('YOUR_TEMPLATE_ID') ||
-            !publicKey || publicKey.includes('YOUR_PUBLIC_KEY')
-        ) {
-            const errorMessage = 'Email service is not configured. Please check your .env file for placeholder values.';
+        if (!serviceID || !templateID || !publicKey) {
+            const errorMessage = 'Email service is not configured. Please set EmailJS environment variables in .env.';
             setStatus(errorMessage);
             setIsSubmitting(false);
-            console.error('EmailJS Error: Credentials in .env file are missing or are still set to placeholder values.');
+            console.error('EmailJS Error: Missing EmailJS env vars (REACT_APP_EMAILJS_SERVICE_ID, REACT_APP_EMAILJS_TEMPLATE_ID, REACT_APP_EMAILJS_USER_ID)');
             return;
         }
 

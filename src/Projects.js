@@ -15,6 +15,7 @@ const projectsData = [
         description: 'As a software developer, I developed the VisiTrack web and mobile application, a comprehensive visitor management system designed to manage visitor check-ins and bookings at various locations. This application not only provides a seamless experience for both hosts and visitors but also ensures efficient tracking and management of visits. Users can easily schedule visits, send notifications to hosts, and manage visitor details efficiently, enhancing the overall visitor experience and streamlining the check-in process for various venues.',
         imageUrls: [visiTrack1, visiTrack2],
         demoUrl: '#', // TODO: Add your live demo link
+        videoUrl: '', // TODO: Add YouTube Video ID (e.g. 'dQw4w9WgXcQ')
         githubUrl: 'https://github.com/thedondev/VisiTrack' // TODO: Add your GitHub repo link
     },
     {
@@ -22,6 +23,7 @@ const projectsData = [
         description: 'In my role as a software developer, I also worked on the CheckMate Mobile Application, a dynamic and innovative solution designed to streamline student class attendance management in universities. Built with Flutter (Dart) for a responsive cross-platform frontend and Node.js for a reliable backend, CheckMate provides a user-friendly and efficient digital solution. It empowers both lecturers and students to manage attendance seamlessly, replacing traditional paper methods with real-time tracking and reporting capabilities.',
         imageUrls: [checkMate1, checkMate2],
         demoUrl: '#', // TODO: Add your live demo link
+        videoUrl: '', // TODO: Add YouTube Video ID
         githubUrl: 'https://github.com/thedondev/CheckMate' // TODO: Add your GitHub repo link
     },
     {
@@ -29,11 +31,12 @@ const projectsData = [
         description: 'As a software developer, I engineered Librico, a standalone desktop application designed to modernize library management in high schools. Built using Electron and React, this solution effectively replaces manual, paper-based systems with a robust digital platform. It features secure librarian authentication, comprehensive book inventory management, and automated due date tracking. Librico enhances operational efficiency by ensuring accurate record-keeping and providing a seamless borrowing experience for students and staff alike.',
         imageUrls: [libricoIcon, libricoApp3], // Updated with new images
         demoUrl: '#', // TODO: Add your live demo link
+        videoUrl: '', // TODO: Add YouTube Video ID
         githubUrl: '#' // TODO: Add your GitHub repo link
     }
 ];
 
-const ProjectCard = ({ project }) => {
+const ProjectCard = ({ project, onOpenModal }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
     useEffect(() => {
@@ -65,7 +68,18 @@ const ProjectCard = ({ project }) => {
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
                 <div className="project-links" style={{ marginTop: '1em' }}>
-                    <a href={project.demoUrl} className="btn btn-outline-light mt-2" target="_blank" rel="noopener noreferrer">
+                    <a 
+                        href={project.demoUrl} 
+                        className="btn btn-outline-light mt-2" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        onClick={(e) => {
+                            if (project.videoUrl) {
+                                e.preventDefault();
+                                onOpenModal(project);
+                            }
+                        }}
+                    >
                         <i className="fas fa-external-link-alt mr-2"></i> Live Demo
                     </a>
                     <a href={project.githubUrl} className="btn btn-outline-light mt-2" style={{ marginLeft: '10px' }} target="_blank" rel="noopener noreferrer">
@@ -79,6 +93,7 @@ const ProjectCard = ({ project }) => {
 
 const Projects = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [selectedProject, setSelectedProject] = useState(null);
     const projectsPerPage = 2; // Show 2 projects per view
 
     // Create pages of projects
@@ -124,7 +139,7 @@ const Projects = () => {
                             {projectPages.map((page, pageIndex) => (
                                 <div className="project-slide-page" key={pageIndex}>
                                     {page.map((project) => (
-                                        <ProjectCard project={project} key={project.title} />
+                                        <ProjectCard project={project} key={project.title} onOpenModal={setSelectedProject} />
                                     ))}
                                 </div>
                             ))}
@@ -145,6 +160,40 @@ const Projects = () => {
                         </div>
                     </div>
                 </div>
+                
+                {/* Video Modal */}
+                {selectedProject && (
+                    <div style={{
+                        position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
+                        backgroundColor: 'rgba(0,0,0,0.8)', zIndex: 1000,
+                        display: 'flex', alignItems: 'center', justifyContent: 'center'
+                    }} onClick={() => setSelectedProject(null)}>
+                        <div style={{
+                            backgroundColor: '#222', padding: '20px', borderRadius: '8px',
+                            maxWidth: '800px', width: '90%', position: 'relative', border: '1px solid #444'
+                        }} onClick={e => e.stopPropagation()}>
+                            <button style={{
+                                position: 'absolute', top: '10px', right: '10px',
+                                background: 'none', border: 'none', color: '#fff', fontSize: '24px', cursor: 'pointer'
+                            }} onClick={() => setSelectedProject(null)}>×</button>
+                            <h3 style={{ color: '#fff', marginBottom: '15px' }}>{selectedProject.title} Demo</h3>
+                            {selectedProject.videoUrl ? (
+                                <div className="video-responsive" style={{ overflow: 'hidden', paddingBottom: '56.25%', position: 'relative', height: 0 }}>
+                                    <iframe
+                                        src={`https://www.youtube.com/embed/${selectedProject.videoUrl}`}
+                                        title="YouTube video player"
+                                        frameBorder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                        style={{ left: 0, top: 0, height: '100%', width: '100%', position: 'absolute' }}
+                                    />
+                                </div>
+                            ) : (
+                                <p style={{ color: '#fff' }}>Demo video coming soon.</p>
+                            )}
+                        </div>
+                    </div>
+                )}
             </section>
             <NavigationArrows prev="/experience" next="/contact" />
         </>
