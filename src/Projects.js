@@ -28,7 +28,7 @@ const projectsData = [
     },
     {
         title: 'Librico',
-        description: 'As a software developer, I engineered Librico, a standalone desktop application designed to modernize library management in high schools. Built using Electron and React, this solution effectively replaces manual, paper-based systems with a robust digital platform. It features secure librarian authentication, comprehensive book inventory management, and automated due date tracking. Librico enhances operational efficiency by ensuring accurate record-keeping and providing a seamless borrowing experience for students and staff alike.',
+        description: 'As a software developer, I engineered Librico, a standalone desktop application designed to modernize library management in high schools. This solution effectively replaces manual, paper-based systems with a robust digital platform. It features secure librarian authentication, comprehensive book inventory management, and automated due date tracking. Librico enhances operational efficiency by ensuring accurate record-keeping and providing a seamless borrowing experience for students and staff alike.',
         imageUrls: [libricoIcon, libricoApp3], // Updated with new images
         demoUrl: '#', // TODO: Add your live demo link
         videoUrl: '', // TODO: Add YouTube Video ID
