@@ -68,21 +68,27 @@ const ProjectCard = ({ project, onOpenModal }) => {
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
                 <div className="project-links" style={{ marginTop: '1em' }}>
-                    <a 
-                        href={project.demoUrl} 
-                        className="btn btn-outline-light mt-2" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        onClick={(e) => {
-                            if (project.videoUrl) {
-                                e.preventDefault();
-                                onOpenModal(project);
-                            }
-                        }}
-                    >
-                        <i className="fas fa-external-link-alt mr-2"></i> Live Demo
-                    </a>
-                    <a href={project.githubUrl} className="btn btn-outline-light mt-2" style={{ marginLeft: '10px' }} target="_blank" rel="noopener noreferrer">
+                    {project.demoUrl && project.demoUrl !== '#' && (
+                        <a 
+                            href={project.demoUrl} 
+                            className="btn btn-outline-light mt-2" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            style={{ marginRight: '10px' }}
+                        >
+                            <i className="fas fa-external-link-alt mr-2"></i> Live Demo
+                        </a>
+                    )}
+                    {project.videoUrl && (
+                        <button 
+                            className="btn btn-outline-light mt-2" 
+                            onClick={() => onOpenModal(project)}
+                            style={{ marginRight: '10px', background: 'transparent', border: '1px solid #fff', color: '#fff', cursor: 'pointer' }}
+                        >
+                            <i className="fas fa-play mr-2"></i> Watch Demo
+                        </button>
+                    )}
+                    <a href={project.githubUrl} className="btn btn-outline-light mt-2" target="_blank" rel="noopener noreferrer">
                         <i className="fab fa-github mr-2"></i> GitHub
                     </a>
                 </div>

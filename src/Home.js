@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import NavigationArrows from './NavigationArrows';
 import cv from './assets/Donald_Mwanga_Makori__CV.pdf';
 
-const texts = ["Software Engineer", "Full-Stack Developer", "IT Support Specialist", "Social Entrepreneur"];
+const texts = ["Software Engineer", "Full-Stack Developer", "IT Support Specialist","Fiber Optic Technician" "Social Entrepreneur"];
 
 const Home = () => {
     const [animatedText, setAnimatedText] = useState('');
