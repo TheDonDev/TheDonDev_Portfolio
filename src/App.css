@@ -137,7 +137,8 @@ footer {
   text-align: center;
   background-size: cover;
   background-position: center;
-  animation: slide-home 15s infinite;
+  background-repeat: no-repeat;
+  background-image: url('./assets/ServeRoom.jpg');
 }
 
 #banner h1 {
@@ -156,9 +157,7 @@ footer {
   height: 100vh;
   color: #fff;
   text-align: center;
-  background-size: cover;
-  background-position: center;
-  animation: slide-intro 10s infinite;
+  background: #1f2933;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,9 +165,7 @@ footer {
 
 /* About */
 #about {
-  background-size: cover;
-  background-position: center;
-  animation: slide-about 35s infinite;
+  background: #34424f;
   color: #fff;
 }
 
@@ -195,9 +192,6 @@ footer {
 #strategic-framework {
   background-color: #000;
   color: #fff;
-  background-size: cover;
-  background-position: center;
-  animation: slide-mv 35s infinite;
   text-align: center;
 }
 
@@ -212,9 +206,7 @@ footer {
 
 /* Experience */
 #experience {
-  background-size: cover;
-  background-position: center;
-  animation: slide-experience 35s infinite;
+  background: #40515d;
   color: #fff;
 }
 
@@ -522,45 +514,6 @@ textarea.form-control {
 
 .form-status.error {
   color: #dc3545; /* A standard bootstrap danger red */
-}
-
-/* --- Animations --- */
-@keyframes slide-home {
-  0% { background-image: url('./assets/ServeRoom.jpg'); }
-  33% { background-image: url('./assets/WorkStationLine2.jpg'); }
-  66% { background-image: url('./assets/ServeRoom.jpg'); }
-  100% { background-image: url('./assets/WorkStationLine.jpg'); }
-}
-
-@keyframes slide-intro {
-  0%, 50% { background-image: url('./assets/nai.jpg'); }
-  100% { background-image: url('./assets/nai3.jpg'); }
-  /* 100% { background-image: url('./assets/PRO3.jpg'); } */
-}
-
-@keyframes slide-about {
-  0% { background-image: url('./assets/Skills.jpg'); }
-  14.28% { background-image: url('./assets/Skills2.jpg'); }
-  28.56% { background-image: url('./assets/Skills6.jpg'); }
-  42.84% { background-image: url('./assets/Skills4.jpg'); }
-  57.12% { background-image: url('./assets/Skills5.jpg'); }
-  71.40% { background-image: url('./assets/BB2.jpg'); }
-  85.68% { background-image: url('./assets/Skills4.jpg'); }
-  100% { background-image: url('./assets/Skills.jpg'); }
-}
-
-@keyframes slide-mv {
-  0% { background-image: url('./assets/MV.jpg'); }
-  33.3333% { background-image: url('./assets/MV3.jpg'); }
-  66.6666% { background-image: url('./assets/MV5.jpg'); }
-  99.9999% { background-image: url('./assets/MV.jpg'); }
-}
-
-@keyframes slide-experience {
-  0% { background-image: url('./assets/Konza.jpg'); }
-  33.33% { background-image: url('./assets/WorkStationDay.jpg'); }
-  66.66% { background-image: url('./assets/WorkStationNight.jpg'); }
-  100% { background-image: url('./assets/Konza.jpg'); }
 }
 
 @media (max-width: 768px) {

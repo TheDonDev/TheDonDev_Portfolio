@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import NavigationArrows from './NavigationArrows';
 
 // Import images
@@ -38,19 +38,36 @@ const projectsData = [
 
 const ProjectCard = ({ project, onOpenModal }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [isVisible, setIsVisible] = useState(false);
+    const cardRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+                setIsVisible(true);
+                observer.disconnect();
+            }
+        }, { rootMargin: '200px' });
+
+        if (cardRef.current) {
+            observer.observe(cardRef.current);
+        }
+
+        return () => observer.disconnect();
+    }, []);
 
     useEffect(() => {
         // Only run slideshow if there's more than one image
-        if (project.imageUrls && project.imageUrls.length > 1) {
+        if (isVisible && project.imageUrls && project.imageUrls.length > 1) {
             const intervalId = setInterval(() => {
                 setCurrentImageIndex(prevIndex => (prevIndex + 1) % project.imageUrls.length);
             }, 5000); // Change image every 5 seconds
 
             return () => clearInterval(intervalId);
         }
-    }, [project.imageUrls]);
+    }, [isVisible, project.imageUrls]);
 
-    const currentImageUrl = project.imageUrls[currentImageIndex];
+    const currentImageUrl = isVisible ? project.imageUrls[currentImageIndex] : null;
 
     const backgroundStyle = {
         backgroundImage: `url(${currentImageUrl})`,
@@ -61,6 +78,7 @@ const ProjectCard = ({ project, onOpenModal }) => {
 
     return (
         <div
+            ref={cardRef}
             className="project-section"
             style={currentImageUrl ? backgroundStyle : { backgroundColor: '#333' }}
         >
