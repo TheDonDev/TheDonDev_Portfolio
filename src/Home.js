@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavigationArrows from './NavigationArrows';
-import cv from './assets/Donald_Mwanga_Makori__CV.pdf';
 
 const texts = ["Software Engineer", "Full-Stack Developer", "IT Support Specialist", "Cyber Security Specialist", "Network Engineer","Social Entrepreneur"];
 
@@ -52,7 +51,7 @@ const Home = () => {
                     <h1>Welcome to my Creative Portfolio</h1>
                     <p id="animated-text">{animatedText}</p>
                     <div className="cta-buttons" style={{ marginTop: '2em', display: 'flex', justifyContent: 'center', gap: '1em' }}>
-                        <a href={cv} className="btn btn-lg" style={{ backgroundColor: '#28a745', color: '#fff', border: 'none' }} download aria-label="Download CV">
+                        <a href="/Donald-Mwanga-Makori-CV.pdf" className="btn btn-lg" style={{ backgroundColor: '#28a745', color: '#fff', border: 'none' }} download="Donald-Mwanga-Makori-CV.pdf" aria-label="Download CV">
                             <i className="fas fa-download mr-2"></i>Download CV
                         </a>
                         <Link to="/contact" className="btn btn-lg" style={{ backgroundColor: '#007bff', color: '#fff', border: 'none' }} aria-label="Contact Me">
