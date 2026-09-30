@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './App.css';
 
 import Header from './Header';
 import Footer from './Footer';
@@ -11,8 +12,6 @@ const StrategicFramework = lazy(() => import('./StrategicFramework'));
 const Experience = lazy(() => import('./Experience'));
 const Projects = lazy(() => import('./Projects'));
 const Contact = lazy(() => import('./Contact'));
-
-import './App.css';
 
 function App() {
   return (
