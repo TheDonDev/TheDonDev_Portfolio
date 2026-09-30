@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import BackgroundSlideshow from './BackgroundSlideshow';
 import NavigationArrows from './NavigationArrows';
+import serveRoom from './assets/ServeRoom.webp';
+import workstationLine from './assets/WorkStationLine.webp';
+import workstationLine2 from './assets/WorkStationLine2.webp';
 
 const texts = ["Software Engineer", "Full-Stack Developer", "IT Support Specialist", "Cyber Security Specialist", "Network Engineer","Social Entrepreneur"];
+const backgroundImages = [serveRoom, workstationLine2, workstationLine];
 
 const Home = () => {
     const [animatedText, setAnimatedText] = useState('');
@@ -47,6 +52,7 @@ const Home = () => {
     return (
         <>
             <section id="banner" className="active">
+                <BackgroundSlideshow images={backgroundImages} interval={5000} />
                 <div className="inner">
                     <h1>Welcome to my Creative Portfolio</h1>
                     <p id="animated-text">{animatedText}</p>

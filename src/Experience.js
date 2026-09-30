@@ -1,10 +1,17 @@
 import React from 'react';
+import BackgroundSlideshow from './BackgroundSlideshow';
 import NavigationArrows from './NavigationArrows';
+import konza from './assets/Konza.webp';
+import workstationDay from './assets/WorkStationDay.webp';
+import workstationNight from './assets/WorkStationNight.webp';
+
+const backgroundImages = [konza, workstationDay, workstationNight];
 
 const Experience = () => {
     return (
         <>
             <section id="experience" className="main">
+                <BackgroundSlideshow images={backgroundImages} />
                 <div className="inner">
                     <header className="major">
                         <h2>EXPERIENCE</h2>

@@ -1,10 +1,20 @@
 import React from 'react';
+import BackgroundSlideshow from './BackgroundSlideshow';
 import NavigationArrows from './NavigationArrows';
+import skills from './assets/Skills.webp';
+import skills2 from './assets/Skills2.webp';
+import skills4 from './assets/Skills4.webp';
+import skills5 from './assets/Skills5.webp';
+import skills6 from './assets/Skills6.webp';
+import bb2 from './assets/BB2.webp';
+
+const backgroundImages = [skills, skills2, skills6, skills4, skills5, bb2];
 
 const About = () => {
     return (
         <>
             <section id="about" className="main">
+                <BackgroundSlideshow images={backgroundImages} />
                 <div className="inner">
                     <header className="major">
                         <h2>ABOUT ME</h2>

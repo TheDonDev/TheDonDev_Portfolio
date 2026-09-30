@@ -1,10 +1,17 @@
 import React from 'react';
+import BackgroundSlideshow from './BackgroundSlideshow';
 import NavigationArrows from './NavigationArrows';
+import mv from './assets/MV.webp';
+import mv3 from './assets/MV3.webp';
+import mv5 from './assets/MV5.webp';
+
+const backgroundImages = [mv, mv3, mv5];
 
 const StrategicFramework = () => {
     return (
         <>
             <section id="strategic-framework" className="main">
+                <BackgroundSlideshow images={backgroundImages} />
                 <div className="inner">
                     <header className="major">
                         <h2>STRATEGIC FRAMEWORK</h2>

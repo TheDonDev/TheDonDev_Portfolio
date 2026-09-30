@@ -1,11 +1,17 @@
 import React from 'react';
+import BackgroundSlideshow from './BackgroundSlideshow';
 import NavigationArrows from './NavigationArrows';
 import profilePic from './assets/profile.jpg'; // Add your profile picture to src/assets
+import nai from './assets/nai.webp';
+import nai3 from './assets/nai3.webp';
+
+const backgroundImages = [nai, nai3];
 
 const Intro = () => {
     return (
         <>
             <section id="intro" className="main">
+                <BackgroundSlideshow images={backgroundImages} interval={5000} />
                 <div className="inner">
                     <header className="major">
                         <h2>INTRODUCTION</h2>

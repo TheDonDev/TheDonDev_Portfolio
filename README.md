@@ -72,3 +72,25 @@ Launches the test runner in the interactive watch mode.
 ### `npm run build`
 
 Builds the app for production to the `build` folder. It correctly bundles React in production mode and optimizes the build for the best performance.
+
+## Contact Form EmailJS Setup
+
+The contact form sends through EmailJS. Configure these values in the local `.env` file and in the hosting provider's build environment:
+
+```text
+REACT_APP_EMAILJS_SERVICE_ID=service_xxxxxxx
+REACT_APP_EMAILJS_TEMPLATE_ID=template_xxxxxxx
+REACT_APP_EMAILJS_PUBLIC_KEY=your_emailjs_public_key
+```
+
+`REACT_APP_EMAILJS_USER_ID` is also supported as a legacy alias for the public key. These are browser-visible EmailJS identifiers and a public key; never put an EmailJS private key in a `REACT_APP_*` variable.
+
+In the EmailJS dashboard:
+
+1. Create or reconnect an Email Service and copy its current Service ID exactly into `REACT_APP_EMAILJS_SERVICE_ID`.
+2. Create an email template whose **To Email** is `donaldmwanga33@gmail.com`. Keep the recipient fixed in the template so visitors cannot change where submissions are sent.
+3. Use `{{name}}`, `{{email}}`, and `{{message}}` for the contact form fields. Set **Reply To** to `{{email}}` so you can reply directly to the sender.
+4. Copy the template ID and account public key into the matching environment variables.
+5. Add the production site origin to EmailJS's allowed origins, then rebuild and redeploy the site after changing hosting environment variables.
+
+The current `Service ID not found` response means the Service ID reaching EmailJS does not match an active service in the EmailJS account. Confirm the ID in the dashboard and update both local and hosting build settings if they differ.

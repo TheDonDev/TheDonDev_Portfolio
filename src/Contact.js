@@ -38,13 +38,13 @@ const Contact = () => {
 
         const serviceID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
         const templateID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
-        const publicKey = process.env.REACT_APP_EMAILJS_USER_ID;
+        const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY || process.env.REACT_APP_EMAILJS_USER_ID;
 
         if (!serviceID || !templateID || !publicKey) {
             const errorMessage = 'Email service is not configured. Please set EmailJS environment variables in .env.';
             setStatus(errorMessage);
             setIsSubmitting(false);
-            console.error('EmailJS Error: Missing EmailJS env vars (REACT_APP_EMAILJS_SERVICE_ID, REACT_APP_EMAILJS_TEMPLATE_ID, REACT_APP_EMAILJS_USER_ID)');
+            console.error('EmailJS Error: Missing EmailJS env vars (REACT_APP_EMAILJS_SERVICE_ID, REACT_APP_EMAILJS_TEMPLATE_ID, REACT_APP_EMAILJS_PUBLIC_KEY)');
             return;
         }
 
@@ -56,8 +56,16 @@ const Contact = () => {
                 setFormData({ name: '', email: '', message: '' });
                 setTimeout(() => setStatus(''), 5000);
             }, (error) => {
-                console.error('EmailJS Error:', error.text);
-                setStatus(`Error: ${error.text}. Please try again.`);
+                const errorText = error?.text || 'Unknown EmailJS error';
+                console.error('EmailJS Error:', errorText);
+
+                if (/service.*not found/i.test(errorText)) {
+                    setStatus('Email service setup error: the configured EmailJS Service ID was not found. Check that it matches an active service in your EmailJS dashboard.');
+                } else if (/template.*not found/i.test(errorText)) {
+                    setStatus('Email service setup error: the configured EmailJS Template ID was not found. Check that it matches an active template in your EmailJS dashboard.');
+                } else {
+                    setStatus(`Error: ${errorText}. Please try again.`);
+                }
             })
             .finally(() => {
                 setIsSubmitting(false);
@@ -118,7 +126,7 @@ const Contact = () => {
                                     'Send Message'
                                 )}
                             </button>
-                            {status && !isSubmitting && <p className={`form-status ${status.startsWith('Error') ? 'error' : ''}`}>{status}</p>}
+                            {status && !isSubmitting && <p role="status" aria-live="polite" className={`form-status ${status.startsWith('Error') || status.startsWith('Email service setup error') ? 'error' : ''}`}>{status}</p>}
                         </form>
                     </div>
 
