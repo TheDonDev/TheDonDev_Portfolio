@@ -6,7 +6,7 @@ import serveRoom from './assets/ServeRoom.webp';
 import workstationLine from './assets/WorkStationLine.webp';
 import workstationLine2 from './assets/WorkStationLine2.webp';
 
-const texts = ["Software Engineer", "Full-Stack Developer", "IT Support Specialist", "Cyber Security Specialist", "Network Engineer","Social Entrepreneur"];
+const texts = ["Software Engineer", "Full-Stack Developer", "IT Support Specialist", "Cyber Security Analyst", "Network Engineer","Social Entrepreneur"];
 const backgroundImages = [serveRoom, workstationLine2, workstationLine];
 
 const Home = () => {
