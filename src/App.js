@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 
 import Header from './Header';
@@ -15,7 +15,7 @@ const Contact = lazy(() => import('./Contact'));
 
 function App() {
   return (
-    <Router>
+    <>
       <Header />
       <main>
         <Suspense fallback={<div className="route-loading" role="status">Loading...</div>}>
@@ -31,7 +31,7 @@ function App() {
         </Suspense>
       </main>
       <Footer />
-    </Router>
+    </>
   );
 }
 
